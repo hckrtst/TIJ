@@ -28,7 +28,9 @@ public class FutureTaskTest {
         ExecutorService exec = Executors.newCachedThreadPool();
         ArrayList<Future<String>> results = new ArrayList<Future<String>>();
         
-        for (int i=0; i < 10; i++) {
+        // If the limit is increased you may see a out of mem error!
+        // There is a limit to how many threads JVM can create!
+        for (int i=0; i < 1999; i++) {
             results.add(exec.submit(new TaskWithResult(i)));
         }
         
