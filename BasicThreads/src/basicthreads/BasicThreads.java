@@ -30,6 +30,7 @@ public class BasicThreads{
     public void joinChild() {
         System.out.println("Joining");
         try {
+            // CyclicBarrier is a better approach
             child.join();
         } catch (InterruptedException e) {
             System.out.println("Interrupted when trying to join");
