@@ -19,7 +19,6 @@ public class EvenGenerator2 extends IntGenerator{
 
     @Override
     synchronized public int next() {
-        System.out.println("enter next()");
         // Silly way to increment so as to induce
         // errors
         
@@ -33,7 +32,6 @@ public class EvenGenerator2 extends IntGenerator{
         // it will run a while, but it will still eventually
         // have this issue since increment operation
         // is non-atomic!
-        System.out.println("exit next()");
         return evenVal;
     }
     
