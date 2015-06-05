@@ -40,7 +40,7 @@ public class simpleaddition.SimpleAddition {
 }
  */
 public class SimpleAddition {
-    private int myInt = 0;
+    private volatile int myInt = 0;
     SimpleAddition() {
         myInt++;
     }
