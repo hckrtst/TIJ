@@ -26,7 +26,7 @@ public class ArrayTest1 {
         Integer[] arr2 = new Integer[rand.nextInt(99)];
         System.out.println("Length of arr2 = " + arr2.length);
         for(int i=0; i < arr2.length; i++ ) {
-            arr2[i] = rand.nextInt();
+            arr2[i] = rand.nextInt(); //autoboxing
         }
         System.out.println("arr2 defined as " + arr2.toString());
         System.out.println("arr2 contains: " + Arrays.toString(arr2));
@@ -34,7 +34,7 @@ public class ArrayTest1 {
         //array of objects with positive integers only
         System.out.println("Length of arr2 = " + arr2.length);
         for(int i=0; i < arr2.length; i++ ) {
-            arr2[i] = rand.nextInt(300);
+            arr2[i] = rand.nextInt(300);// autoboxing
         }
         System.out.println("arr2 defined as " + arr2.toString());
         System.out.println("arr2 contains: " + Arrays.toString(arr2));
