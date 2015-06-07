@@ -12,8 +12,6 @@ import java.util.Comparator;
  * @author sanket
  */
 public class AutoboxingFixed {
-
-    
     /**
      * @param args the command line arguments
      */
