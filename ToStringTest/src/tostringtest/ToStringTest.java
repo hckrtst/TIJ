@@ -49,3 +49,20 @@ public class ToStringTest {
     }
     
 }
+/* output
+Cockatooooo
+meowwwwww
+Cockatooooo meowwwwww
+Cockatooooo
+meowwwwww
+Cockatooooo meowwwwww
+Cockatooooo
+meowwwwww
+Cockatooooo meowwwwww
+Cockatooooo
+meowwwwww
+Cockatooooo meowwwwww
+Cockatooooo
+meowwwwww
+Cockatooooo meowwwwww
+*/
