@@ -14,6 +14,7 @@ import java.net.ProtocolException;
 import java.net.URL;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+//import javax.net.ssl.HttpsURLConnection;
 
 /**
  *
@@ -27,8 +28,11 @@ public class HttpTest {
         
         URL url = null;        
         
-        try {           
-            url = new URL("https://www.duckduckgo.com");
+        try {
+            // To use https we need to use HttpsURLConnection instead
+            //url = new URL("https://www.google.com/search" + "?q=" + "java");
+            url = new URL("http://api.duckduckgo.com/?q=java&format=json");
+            
         } catch (MalformedURLException ex) {
             Logger.getLogger(HttpTest.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -53,7 +57,7 @@ public class HttpTest {
         try {
             System.out.println("Sending GET to " + url);
             int resp = conn.getResponseCode();
-            System.out.println("Got response = " + resp);
+            System.out.println("Response code = " + resp);
             
         } catch (IOException ex) {
             Logger.getLogger(HttpTest.class.getName()).log(Level.SEVERE, null, ex);
@@ -99,18 +103,9 @@ public class HttpTest {
     
 }
 /* output
-Sending GET to https://www.duckduckgo.com
-Got response = 200
+Sending GET to http://api.duckduckgo.com/?q=java&format=json
+Response code = 200
 Response --->
-<!DOCTYPE html><!--[if IEMobile 7 ]> <html lang="en_US" class="no-js iem7"> 
-<![endif]--><!--[if lt IE 7]> <html class="ie6 lt-ie10 lt-ie9 lt-ie8 lt-ie7 no-js" lang="en_US"> <![endif]--><!--[if IE 7]>    
-<html class="ie7 lt-ie10 lt-ie9 lt-ie8 no-js" lang="en_US"> <![endif]--><!--[if IE 8]>    
-<html class="ie8 lt-ie10 lt-ie9 no-js" lang="en_US"> <![endif]--><!--[if IE 9]>    
-<html class="ie9 lt-ie10 no-js" lang="en_US"> <![endif]--><!--[if (gte IE 9)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en_US"><!--<![endif]-->  
-<head>    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
-<meta http-equiv="content-type" content="text/html; charset=UTF-8;charset=utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=1" />
-<meta name="HandheldFriendly" content="true"/><link rel="canonical" href="https://duckduckgo.com/">
-.....snip...
-BUILD SUCCESSFUL (total time: 1 second)
+{"DefinitionSource":"","Heading":"Java","ImageWidth":0,"RelatedTopics":[{"Result":"<a href=\"https://duckduckgo.com/Java\">Java</a> An island of Indonesia. 
+With a population of 143 million, Java is the home of ...
 */
