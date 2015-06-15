@@ -24,6 +24,8 @@ SOFTWARE.
 
 package anagramtester;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Scanner;
 
 /**
@@ -31,6 +33,30 @@ import java.util.Scanner;
  * @author Sanket K
  */
 public class AnagramTester {
+    
+    private static Map getFreqMap(String s) {
+        if (null == s) {
+            return null;            
+        }
+        
+        Map m;
+        m = new HashMap();
+        for (int i = 0; i < s.length(); i++) {
+            int j = 0;
+            char c = s.charAt(i);
+            // We avoid NullPointerException by checking
+            // if key exists
+            if (m.containsKey(c)) {
+                j = (int) m.get(c);
+                //System.out.println("for key " + c +  " got count " + j);
+            }
+            j+=1;
+            //System.out.println("For letter " + s.charAt(i) + " put " + j);
+            m.put(c, j);            
+        }             
+        System.out.println("hashmap dump" + m.toString());
+        return m;
+    }
 
     /*
     * Test if two strings have the same letters
@@ -39,8 +65,11 @@ public class AnagramTester {
     * @return boolean
     */
     private static boolean performFreqAnalysis(String first, String second) {
+        Map firstMap = getFreqMap(first);
+        Map secondMap = getFreqMap(second);
         
-        return false;
+        //return (first.hashCode() == second.hashCode()); 
+        return (firstMap.equals(secondMap));
     }
    
     /*
@@ -49,6 +78,10 @@ public class AnagramTester {
     @param second String
     */
     public static boolean check(String first, String second) {
+        // convert to lower case first
+        first = first.toLowerCase();
+        second = second.toLowerCase();
+        
         // first check if they are the same length
         // This should be a O(1)
         if (first.length() == second.length()) {
@@ -56,9 +89,10 @@ public class AnagramTester {
             // this should be O(first.lenth + second.length)
             if (first.equals(second)) {
                 return true;
-            }            
-        } else {
-            return performFreqAnalysis(first, second);
+            } else {             
+                System.out.println("Do freq analysis");
+                return performFreqAnalysis(first, second);
+            }
         }
         return false;
     }
@@ -84,3 +118,17 @@ public class AnagramTester {
     }
     
 }
+/*
+run:
+What is the first string? United States
+
+You entered : United States
+What is the second string? Steadiest Nut
+
+You entered : Steadiest Nut
+Checking if the strings are anagrams
+Do freq analysis
+hashmap dump{ =1, d=1, u=1, e=2, t=3, s=2, a=1, n=1, i=1}
+hashmap dump{u=1,  =1, d=1, e=2, t=3, s=2, a=1, n=1, i=1}
+ The result is : true
+*/
