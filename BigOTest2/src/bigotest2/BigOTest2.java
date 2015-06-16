@@ -23,6 +23,8 @@
  */
 package bigotest2;
 
+import java.util.concurrent.TimeUnit;
+
 /**
  *
  * @author Sanket K
@@ -62,13 +64,108 @@ public class BigOTest2 {
         
     }
     
+    public void logarithmicTimeSample(int num) {
+        System.out.println("Got input = " + num);
+        int max = 10000;
+        int i = 0;
+        while (num > 0) {
+            i++;
+            num /= 2;
+            System.out.println("Step " + i + " value = " + num);            
+        }
+        System.out.println("Final value = " + num);
+    }
+    
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
     
         BigOTest2 obj = new BigOTest2();
-        obj.basicBigOComputation();
+        //obj.basicBigOComputation();
+        obj.logarithmicTimeSample(10);
+        obj.logarithmicTimeSample(1000);
+        obj.logarithmicTimeSample(10000000);
+        obj.logarithmicTimeSample(999999999);
     }
     
 }
+/*output
+run:
+Got input = 10
+Step 1 value = 5
+Step 2 value = 2
+Step 3 value = 1
+Step 4 value = 0
+Final value = 0
+Got input = 1000
+Step 1 value = 500
+Step 2 value = 250
+Step 3 value = 125
+Step 4 value = 62
+Step 5 value = 31
+Step 6 value = 15
+Step 7 value = 7
+Step 8 value = 3
+Step 9 value = 1
+Step 10 value = 0
+Final value = 0
+Got input = 10000000
+Step 1 value = 5000000
+Step 2 value = 2500000
+Step 3 value = 1250000
+Step 4 value = 625000
+Step 5 value = 312500
+Step 6 value = 156250
+Step 7 value = 78125
+Step 8 value = 39062
+Step 9 value = 19531
+Step 10 value = 9765
+Step 11 value = 4882
+Step 12 value = 2441
+Step 13 value = 1220
+Step 14 value = 610
+Step 15 value = 305
+Step 16 value = 152
+Step 17 value = 76
+Step 18 value = 38
+Step 19 value = 19
+Step 20 value = 9
+Step 21 value = 4
+Step 22 value = 2
+Step 23 value = 1
+Step 24 value = 0
+Final value = 0
+Got input = 999999999
+Step 1 value = 499999999
+Step 2 value = 249999999
+Step 3 value = 124999999
+Step 4 value = 62499999
+Step 5 value = 31249999
+Step 6 value = 15624999
+Step 7 value = 7812499
+Step 8 value = 3906249
+Step 9 value = 1953124
+Step 10 value = 976562
+Step 11 value = 488281
+Step 12 value = 244140
+Step 13 value = 122070
+Step 14 value = 61035
+Step 15 value = 30517
+Step 16 value = 15258
+Step 17 value = 7629
+Step 18 value = 3814
+Step 19 value = 1907
+Step 20 value = 953
+Step 21 value = 476
+Step 22 value = 238
+Step 23 value = 119
+Step 24 value = 59
+Step 25 value = 29
+Step 26 value = 14
+Step 27 value = 7
+Step 28 value = 3
+Step 29 value = 1
+Step 30 value = 0
+Final value = 0
+*/
