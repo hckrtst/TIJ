@@ -26,6 +26,7 @@ package listexample1;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 /**
  *
@@ -48,6 +49,7 @@ public class ListExample1 {
         
         
         Iterator it = cities.iterator();
+        System.out.print(it.toString()+ "=");
         while(it.hasNext()) {
             // Note:
             // 1. casting needed since no type specified in list declaration
@@ -55,11 +57,12 @@ public class ListExample1 {
             /*
             Exception in thread "main" java.lang.ClassCastException: java.lang.Integer cannot be cast to java.lang.String
             */
-            String s = (String) (it.next()).toString();
-            
-            System.out.println(s);
+            String s = (String) (it.next()).toString();            
+            System.out.print(s + ",");
         }
+        System.out.println("");
         
+        List<String> smallNations = new ArrayList<>();//CopyOnWriteArrayList<>();
         List<String> islands = new ArrayList<>();
         
         islands.add("Cyprus");
@@ -67,6 +70,69 @@ public class ListExample1 {
         islands.add("Fiji");
         //islands.add(3456);// We cannot add this now since String specified     
         
+       
+        it = islands.iterator();
+        System.out.print(it.toString()+ "=");
+        while(it.hasNext()) {
+            // no toString needed
+            String s = (String) it.next();
+            System.out.print(s + ",");
+        }
+        System.out.println("");
+        
+        smallNations.add("Kuwait");
+        smallNations.add("Monaco");
+        smallNations.add("Singapore");
+        
+        it = smallNations.iterator();
+        System.out.print(it.toString()+ "=");
+        while(it.hasNext()) {
+            // no toString needed
+            String s = (String) it.next();
+            
+            System.out.print(s + ",");
+        }
+        System.out.println("");
+        
+        
+        System.out.println("Add all test");
+        smallNations.addAll(0, islands);
+        
+        it = smallNations.iterator();
+        System.out.print(it.toString()+ "=");
+        while(it.hasNext()) {
+            // no toString needed
+            String s = (String) it.next();
+            
+            System.out.print(s + ",");
+        }
+        System.out.println("");
+        
+        
+        
     }
     
 }
+/*
+If we forget to update
+it = smallNations.iterator(); in last step we get exception
+run:
+java.util.ArrayList$Itr@19509443=New Orleans,Santa Barbara,2124,Miami,San Diego,Münich,
+java.util.ArrayList$Itr@7935c7b0=Cyprus,Iceland,Fiji,
+java.util.ArrayList$Itr@39c931fb=Kuwait,Monaco,Singapore,
+Add all test
+Exception in thread "main" java.util.ConcurrentModificationException
+	at java.util.ArrayList$Itr.checkForComodification(ArrayList.java:859)
+	at java.util.ArrayList$Itr.next(ArrayList.java:831)
+	at listexample1.ListExample1.main(ListExample1.java:105)
+java.util.ArrayList$Itr@39c931fb=Java Result: 1
+
+run:
+java.util.ArrayList$Itr@19509443=New Orleans,Santa Barbara,2124,Miami,San Diego,Münich,
+java.util.ArrayList$Itr@7935c7b0=Cyprus,Iceland,Fiji,
+java.util.ArrayList$Itr@39c931fb=Kuwait,Monaco,Singapore,
+Add all test
+java.util.ArrayList$Itr@47f07360=Cyprus,Iceland,Fiji,Kuwait,Monaco,Singapore,
+
+*/
+
