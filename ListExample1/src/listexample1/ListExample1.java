@@ -106,12 +106,8 @@ public class ListExample1 {
             
             System.out.print(s + ",");
         }
-        System.out.println("");
-        
-        
-        
-    }
-    
+        System.out.println("");        
+    }    
 }
 /*
 If we forget to update
