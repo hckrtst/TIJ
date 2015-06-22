@@ -117,8 +117,63 @@ public class SetExample2 {
         System.out.println("\nCreate subset using a fake province");
         NavigableSet subset;
         subset = sets.getSet().tailSet(new Province("Fake Province", 633233), true);
-        System.out.println(subset);
-        
+        System.out.println(subset);       
         
     }    
 }
+/*
+run:
+Create a set of Provinces
+Compare British Columbia with British Columbia
+Same names and areas
+Compare Alberta with British Columbia
+British Columbia > Alberta
+Compare Ontario with British Columbia
+British Columbia > Ontario
+Compare Ontario with Alberta
+Alberta < Ontario
+Compare Prince Edward Island with Ontario
+Ontario > Prince Edward Island
+Compare Prince Edward Island with Alberta
+Alberta > Prince Edward Island
+Compare Yukon with Ontario
+Ontario > Yukon
+Compare Yukon with Alberta
+Alberta > Yukon
+Compare Yukon with Prince Edward Island
+Prince Edward Island < Yukon
+Compare Quebec with Ontario
+Ontario < Quebec
+Compare Quebec with British Columbia
+British Columbia < Quebec
+Provinces:
+
+[(Prince Edward Island,5660), (Yukon,474391), (Alberta,642317), (Ontario,917741), (British Columbia,944735), (Quebec,1356128)]
+
+Checking how 'floor' and 'ceiling' works in sets
+Compare Nova Scotia with Ontario
+Ontario > Nova Scotia
+Compare Nova Scotia with Yukon
+Yukon > Nova Scotia
+Compare Nova Scotia with Prince Edward Island
+Prince Edward Island < Nova Scotia
+(Prince Edward Island,5660)
+Compare Nova Scotia with Ontario
+Ontario > Nova Scotia
+Compare Nova Scotia with Yukon
+Yukon > Nova Scotia
+Compare Nova Scotia with Prince Edward Island
+Prince Edward Island < Nova Scotia
+(Yukon,474391)
+
+Create subset using a fake province
+Compare Fake Province with Fake Province
+Same names and areas
+Compare Fake Province with Ontario
+Ontario > Fake Province
+Compare Fake Province with Yukon
+Yukon < Fake Province
+Compare Fake Province with Alberta
+Alberta > Fake Province
+[(Alberta,642317), (Ontario,917741), (British Columbia,944735), (Quebec,1356128)]
+*/
