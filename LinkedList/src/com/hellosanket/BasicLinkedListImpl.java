@@ -24,15 +24,19 @@
 package com.hellosanket;
 
 import java.util.Collection;
-import java.util.Iterator;
-import javax.xml.ws.Service;
+import java.util.ListIterator;
 
 
-public class BasicLinkedListImpl<E> implements BasicLinkedList<E> {
+public class BasicLinkedListImpl<E> extends BasicLinkedList<E> {
     
     // Java does not provide unsigned :(
     
     private int size;
+
+    @Override
+    public ListIterator<E> listIterator() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
        
     /*
         This is the class that stores the data and allows navigation to the
@@ -96,11 +100,6 @@ public class BasicLinkedListImpl<E> implements BasicLinkedList<E> {
 
     @Override
     public boolean contains(Object o) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public Iterator<E> iterator() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 

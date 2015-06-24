@@ -24,23 +24,32 @@
 package com.hellosanket;
 
 import java.util.Collection;
+import java.util.Iterator;
+import java.util.ListIterator;
 
 /**
  *
  * @author Sanket K
+ * @param <E>
  */
-public interface BasicLinkedList<E> extends Collection<E> {
+public abstract class BasicLinkedList<E> implements Collection<E> {
     
-    public int insertAfter(E ref, E data);
+    public abstract int insertAfter(E ref, E data);
     
-    public int insertBefore(E ref, E data);
+    public abstract int insertBefore(E ref, E data);
     
-    public E getHead();
+    public abstract E getHead();
     
-    public E removeHead();
+    public abstract E removeHead();
     
-    public E getTail();
+    public abstract E getTail();
     
-    public E removeTail();    
+    public abstract E removeTail();
     
+    @Override
+    public Iterator<E> iterator() {
+        return listIterator();
+    }
+    
+    public abstract ListIterator<E> listIterator();    
 }
