@@ -29,11 +29,11 @@ import java.util.Collection;
  *
  * @author Sanket K
  */
-public interface BasicLinkedList<E> extends Collection<E>{
+public interface BasicLinkedList<E> extends Collection<E> {
     
-    public int insertAfter(E elem);
+    public int insertAfter(E ref, E data);
     
-    public int insertBefore(E elem);
+    public int insertBefore(E ref, E data);
     
     public E getHead();
     
@@ -41,8 +41,6 @@ public interface BasicLinkedList<E> extends Collection<E>{
     
     public E getTail();
     
-    public E removeTail();
-    
-    public void purge();
+    public E removeTail();    
     
 }

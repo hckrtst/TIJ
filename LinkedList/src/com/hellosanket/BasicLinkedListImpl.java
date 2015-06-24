@@ -25,17 +25,42 @@ package com.hellosanket;
 
 import java.util.Collection;
 import java.util.Iterator;
+import javax.xml.ws.Service;
 
 
 public class BasicLinkedListImpl<E> implements BasicLinkedList<E> {
+    
+    // Java does not provide unsigned :(
+    
+    private int size;
+       
+    /*
+        This is the class that stores the data and allows navigation to the
+        next element in list
+    */
+    private static class Node<E> {
+        E payload;
+        Node<E> prev;
+        Node<E> next;
+        
+        Node(Node<E> p, Node<E> n, E e) {
+            prev = p;
+            next = n;
+            payload = e;
+        }
+    }
+    
+    
+    Node<E> head;
+    Node<E> tail;
 
     @Override
-    public int insertAfter(E elem) {
+    public int insertAfter(E ref, E data) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public int insertBefore(E elem) {
+    public int insertBefore(E ref, E data) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
@@ -56,11 +81,6 @@ public class BasicLinkedListImpl<E> implements BasicLinkedList<E> {
 
     @Override
     public E removeTail() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void purge() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
@@ -96,7 +116,27 @@ public class BasicLinkedListImpl<E> implements BasicLinkedList<E> {
 
     @Override
     public boolean add(E e) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        if (null == e) {
+            System.out.println("Bad paramater");
+            return false;
+        }
+        
+        Node<E> n = new Node<>(null, null, e);
+        n.payload = e;
+        
+        // if empty set head and tail to be first element
+        if (0 == size) {
+            
+            head = n;
+            tail = n;
+            
+        } else {
+            // add to head and update head
+            n.next = head;
+            n.prev = null; // TODO use sentinal?
+            
+        }
+        return true;
     }
 
     @Override
