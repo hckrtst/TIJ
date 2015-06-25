@@ -238,11 +238,13 @@ public class BasicLinkedListImplTest {
         System.out.println("add");
         Object e = null;
         BasicLinkedListImpl instance = new BasicLinkedListImpl();
-        boolean expResult = false;
-        boolean result = instance.add(e);
+        boolean expResult = true;
+        int i = 20;
+        boolean result = instance.add(i);
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        //fail("The test case is a prototype.");
+        System.out.println("Done");
     }
 
     /**

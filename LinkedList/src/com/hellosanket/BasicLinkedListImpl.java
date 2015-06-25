@@ -31,7 +31,7 @@ public class BasicLinkedListImpl<E> extends BasicLinkedList<E> {
     
     // Java does not provide unsigned :(
     
-    private int size;
+    private int size = 0;
 
     @Override
     public ListIterator<E> listIterator() {
@@ -125,16 +125,21 @@ public class BasicLinkedListImpl<E> extends BasicLinkedList<E> {
         
         // if empty set head and tail to be first element
         if (0 == size) {
-            
+            System.out.println("Adding first element");
             head = n;
             tail = n;
             
+            
         } else {
+            System.out.println("Added to head");
             // add to head and update head
             n.next = head;
             n.prev = null; // TODO use sentinal?
-            
+            head = n;
+            System.out.println("Head is now " + head);
         }
+        size++;
+        System.out.println("Size is now " + size);
         return true;
     }
 
