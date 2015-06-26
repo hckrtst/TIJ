@@ -145,7 +145,54 @@ public class BasicLinkedListImpl<E> extends BasicLinkedList<E> {
 
     @Override
     public boolean remove(Object o) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
+        if (null == o) {
+            System.out.println("Null paramater error");
+            return false;
+        }
+        
+        System.out.println("Try to remove " + o);
+                
+        // first iterate to the desired element
+        // TODO should this throw any exceptions?
+        Node<E> current = head; 
+        while(null != current.next) {
+            
+        }
+        
+        
+        return true;
+    }
+    
+    /*
+    * Try to unlink an element from anywhere in the list
+    */
+    private boolean unlink(Object o, Object before, Object after) {
+        System.out.println("Got o=" + o + " before=" + before + " after=" + after);
+        if (null == o) {
+            System.out.println("Null paramater error");
+            return false;
+        }
+        
+        // if unlinking head then
+        // make 'after' the new head
+        if (o == head) {
+            
+            
+        }
+        
+        // if unlinking tail then make 'before'
+        // the new tail
+        else if (o == tail) {
+            
+        }
+        
+        // in the default case
+        // we are removing something from the middle of the list
+        // we need to ensure the list stays intact
+        
+        
+        return false;
     }
 
     @Override
