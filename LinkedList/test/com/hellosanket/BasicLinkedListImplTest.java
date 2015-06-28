@@ -38,6 +38,7 @@ import static org.junit.Assert.*;
  */
 public class BasicLinkedListImplTest {
     
+        
     public BasicLinkedListImplTest() {
     }
     
@@ -109,11 +110,13 @@ public class BasicLinkedListImplTest {
     public void testRemoveHead() {
         System.out.println("removeHead");
         BasicLinkedListImpl instance = new BasicLinkedListImpl();
-        Object expResult = null;
-        Object result = instance.removeHead();
+        int expResult = 30;
+        
+        instance.add(10);
+        instance.add(20);
+        instance.add(30);
+        int result = (int) instance.removeHead();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -123,11 +126,26 @@ public class BasicLinkedListImplTest {
     public void testGetTail() {
         System.out.println("getTail");
         BasicLinkedListImpl instance = new BasicLinkedListImpl();
-        Object expResult = null;
-        Object result = instance.getTail();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        
+        // Test with null list
+        /*{
+            Object expResult = null;        
+            Object result = instance.getTail();
+            assertEquals(expResult, result);
+        }*/
+        
+        // Test with data
+        {
+            String expResult = "hello";        
+            instance.add("hello");
+            String result = (String) instance.getTail();
+            assertEquals(expResult, result);
+            
+            instance.add("kitty");
+            result = (String) instance.getTail();
+            assertEquals(expResult, result);
+        }
+        
     }
 
     /**
@@ -137,11 +155,14 @@ public class BasicLinkedListImplTest {
     public void testRemoveTail() {
         System.out.println("removeTail");
         BasicLinkedListImpl instance = new BasicLinkedListImpl();
-        Object expResult = null;
-        Object result = instance.removeTail();
+        int expResult = 10;
+        
+        instance.add(10);
+        instance.add(20);
+        instance.add(30);
+        int result = (int) instance.removeTail();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        
     }
 
     /**
@@ -151,11 +172,22 @@ public class BasicLinkedListImplTest {
     public void testSize() {
         System.out.println("size");
         BasicLinkedListImpl instance = new BasicLinkedListImpl();
-        int expResult = 0;
-        int result = instance.size();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        
+        // test size 0
+        {
+            int expResult = 0;
+            int result = instance.size();
+            assertEquals(expResult, result);
+        }
+        
+        //test size 2
+        {
+            instance.add(10);
+            instance.add("test");
+            int expResult = 2;
+            int result = instance.size();
+            assertEquals(expResult, result);
+        }        
     }
 
     /**
@@ -165,11 +197,9 @@ public class BasicLinkedListImplTest {
     public void testIsEmpty() {
         System.out.println("isEmpty");
         BasicLinkedListImpl instance = new BasicLinkedListImpl();
-        boolean expResult = false;
+        boolean expResult = true;
         boolean result = instance.isEmpty();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        assertEquals(expResult, result);        
     }
 
     /**
@@ -236,7 +266,6 @@ public class BasicLinkedListImplTest {
     @Test
     public void testAdd() {
         System.out.println("add");
-        Object e = null;
         BasicLinkedListImpl instance = new BasicLinkedListImpl();
         boolean expResult = true;
         int i = 20;

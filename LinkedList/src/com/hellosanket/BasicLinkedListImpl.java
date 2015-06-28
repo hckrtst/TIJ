@@ -70,32 +70,46 @@ public class BasicLinkedListImpl<E> extends BasicLinkedList<E> {
 
     @Override
     public E getHead() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return head.payload;
     }
 
     @Override
-    public E removeHead() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public E removeHead() {           
+        if (this.isEmpty()) return null;
+        
+        Node<E> current = head;
+        if (unlink(head.payload, head, head.prev, head.next)) {
+            size--;
+            return current.payload;
+        }
+        return null;       
     }
 
     @Override
     public E getTail() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return tail.payload;
     }
 
     @Override
     public E removeTail() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        if (this.isEmpty()) return null;
+        
+        Node<E> current = tail;
+        if (unlink(tail.payload, tail, tail.prev, tail.next)) {
+            size--;
+            return current.payload;
+        }
+        return null;       
     }
 
     @Override
     public int size() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return size;
     }
 
     @Override
     public boolean isEmpty() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return (0 == size);
     }
 
     @Override
@@ -127,9 +141,7 @@ public class BasicLinkedListImpl<E> extends BasicLinkedList<E> {
         if (0 == size) {
             System.out.println("Adding first element");
             head = n;
-            tail = n;
-            
-            
+            tail = n;            
         } else {
             System.out.println("Added to head");
             // add to head and update head
@@ -145,12 +157,10 @@ public class BasicLinkedListImpl<E> extends BasicLinkedList<E> {
 
     @Override
     public boolean remove(Object o) {
-        System.out.println("Test");
         if (null == o) {
             System.out.println("Null paramater error");
             return false;
         }
-        System.out.println("Test2");
         E elem = (E) o;
         
         System.out.println("Try to remove " + elem);
@@ -160,8 +170,13 @@ public class BasicLinkedListImpl<E> extends BasicLinkedList<E> {
         Node<E> current = head;
         while(null != current) {
             if (elem == current.payload) {
-                unlink(elem, current, current.prev, current.next);
-                return true;
+                if (unlink(elem, current, current.prev, current.next)) {
+                    size--;
+                    return true;
+                } else {
+                    return false;
+                }
+                
             }
             current = current.next;
         }
