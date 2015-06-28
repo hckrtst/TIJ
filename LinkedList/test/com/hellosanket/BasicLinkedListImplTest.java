@@ -244,25 +244,30 @@ public class BasicLinkedListImplTest {
         assertEquals(expResult, result);
         int j = 30;
         result = instance.add(j);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        //fail("The test case is a prototype.");
-        System.out.println("Done");
+        assertEquals(expResult, result);        
     }
 
     /**
      * Test of remove method, of class BasicLinkedListImpl.
+     * TODO 
+     * - move this to testRemoveTail()
+     * - also check Tail gets updated correctly
+     * 
      */
     @Test
     public void testRemove() {
         System.out.println("remove");
         Object o = null;
         BasicLinkedListImpl instance = new BasicLinkedListImpl();
-        boolean expResult = false;
-        boolean result = instance.remove(o);
+        boolean expResult = true;
+        int i = 20;
+        boolean result = instance.add(i);
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        int j = 30;
+        result = instance.add(j);
+        result = instance.remove(20);
+        assertEquals(expResult, result);
+        //assertEquals(30, instance.getTail());       
     }
 
     /**

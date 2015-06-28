@@ -145,54 +145,66 @@ public class BasicLinkedListImpl<E> extends BasicLinkedList<E> {
 
     @Override
     public boolean remove(Object o) {
-        
+        System.out.println("Test");
         if (null == o) {
             System.out.println("Null paramater error");
             return false;
         }
+        System.out.println("Test2");
+        E elem = (E) o;
         
-        System.out.println("Try to remove " + o);
+        System.out.println("Try to remove " + elem);
                 
         // first iterate to the desired element
         // TODO should this throw any exceptions?
-        Node<E> current = head; 
-        while(null != current.next) {
-            
+        Node<E> current = head;
+        while(null != current) {
+            if (elem == current.payload) {
+                unlink(elem, current, current.prev, current.next);
+                return true;
+            }
+            current = current.next;
         }
-        
-        
-        return true;
+                
+        return false;
     }
     
     /*
     * Try to unlink an element from anywhere in the list
     */
-    private boolean unlink(Object o, Object before, Object after) {
-        System.out.println("Got o=" + o + " before=" + before + " after=" + after);
-        if (null == o) {
+    private boolean unlink(E elem, Node<E> curr, Node<E> prev, Node<E> next) {
+        System.out.println("Unlink elem=" + elem);
+        // prev or next may be null, but node should be non-null
+        if (null == elem) {
             System.out.println("Null paramater error");
             return false;
         }
         
         // if unlinking head then
-        // make 'after' the new head
-        if (o == head) {
-            
-            
+        // move head to next
+        if (elem == head.payload) {            
+            head = head.next;
+            //System.out.println("Head is now " + head.payload);
+            curr = null; // Check
+            return true;
         }
         
-        // if unlinking tail then make 'before'
-        // the new tail
-        else if (o == tail) {
-            
+        // if unlinking tail then make prev the
+        // new tail
+        else if (elem == tail.payload) {
+            tail = tail.prev;
+            //System.out.println("Tail is now " + tail.payload);
+            curr = null;
+            return true;
         }
         
         // in the default case
         // we are removing something from the middle of the list
         // we need to ensure the list stays intact
-        
-        
-        return false;
+        prev.next = next;
+        next.prev = prev;
+        curr = null;
+        return true;          
     }
 
     @Override
