@@ -25,6 +25,9 @@ package sortingexamples;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -51,21 +54,47 @@ public class SortingExamples {
         data.add(100);
         data.add(34);
         data.add(39);
-        data.add(3);       
+        data.add(3);
+        data.add(3);
+        data.add(3);
     }
     
     public List<Integer> getUnsorted() {
         return data;
     }
     
+    private void dumpState(int j, List<Integer> list) {
+        for(int i =0; i < list.size(); i++ ) {
+            
+           if (i == j) {
+               System.out.print("(" + list.get(i) + ")");
+           }else {
+               System.out.print(list.get(i));
+           }
+           System.out.print(", ");
+        }
+        try {
+            TimeUnit.SECONDS.sleep(7);
+        } catch (InterruptedException ex) {
+            Logger.getLogger(SortingExamples.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        System.out.println("");
+    }
     public List<Integer> insertionSort(List<Integer> unsorted) {
         List<Integer> sorted = unsorted;
         for (int i = 1; i < unsorted.size(); i++) {
             int j = i;
             int testvar = unsorted.get(i);
-            while (j > 0 && unsorted.get(j-1) > unsorted.get(j) ) {
+            System.out.print("Testing " + testvar + ": ");
+            dumpState(j, data);
+            
+            while (j > 0 && unsorted.get(j-1) > testvar ) {
+                System.out.println(unsorted.get(j-1) + " > " + testvar);
                 unsorted.set(j, unsorted.get(j-1));
+                //unsorted.set(j-1,0);
                 j = j-1;
+                
+                //dumpState(testvar, data);
             }
             unsorted.set(j, testvar);
         }
