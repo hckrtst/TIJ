@@ -110,14 +110,15 @@ public class RegexTest {
         
         
         String s5 = "MyCompany Inc. Copyright 1998-2012";
-        ps = ".*copyright\\s+\\d";
+        ps = ".*copyright\\s+";
         System.out.println("Length = " + s5.length());
         System.out.println("\nUsing string: " + s5);
         if (s5.matches("2015")) {
             System.out.println("Copyright is updated");
         } else {
             System.out.println("Copyright is not updated");
-            s5 = s5.replaceAll(ps, "2015");
+            
+            s5 = s5.replaceAll("\\d+", "2015");
             System.out.println("Updated = " + s5);
         }
         
@@ -127,7 +128,9 @@ public class RegexTest {
         m = p.matcher(s5);
         //System.out.println("lookingAt = " + m.lookingAt());
         while(m.find()) {
-            System.out.println("Groups = " + m.group() + " at " + m.start() + " ends at " + m.end());
+            System.out.println("group(0) = " + m.group(0));
+            
+            System.out.println("Groups = " + m.group() + " starts at " + m.start() + " ends at " + m.end());
             s5 = s5.replaceFirst(ps, "2015");
         }
         System.out.println("String is now = " +s5);
