@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ClassDiagram name="Luigi">
+  <ClassDiagramComponents>
+    <Class name="UntitledClass" package="" visibility="public" xPosition="557.0" yPosition="251.0">
+      <Fields/>
+      <Constructors/>
+      <Methods/>
+    </Class>
+    <Interface name="UntitledInterface" package="" visibility="public" xPosition="554.0" yPosition="61.0">
+      <Methods/>
+    </Interface>
+  </ClassDiagramComponents>
+  <ClassDiagramRelations/>
+</ClassDiagram>
