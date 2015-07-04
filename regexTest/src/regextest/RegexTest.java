@@ -145,10 +145,11 @@ public class RegexTest {
         
         String s5 = "The source is copyright the authors etc etc.....\n"
                 + "MyCompany Inc. Copyright (c) 1998 - 2012\n"
-                + "copyright for 2012 \n"
+                + "COPYRIGHT for 1993     , 2000 \n"
                 + " All right reserved 2015";
-        ps = "copyright.*(((\\d{4}).*(\\d{4}))|(\\d{4}))";
-                
+        //ps = "copyright.*(((\\d{4})\\s*[,-]+\\s*(\\d{4}))|(\\d{4}))";
+        //ps = "copyright.*(\\d{4})\\s+?((-?|,?)\\s+(\\d{4}?))";
+        ps = "copyright.*(\\d{4})\\s*(-?|,?)\\s*(\\d{4}?)";
         System.out.println("\nUsing string: " + s5);
         
         /*if (s5.matches("2015")) {
@@ -180,7 +181,7 @@ public class RegexTest {
         
         
         //Understanding groups with regex
-        String s6 = "\n\nOn Children - by Kahlil Gibran"
+        String s6 = "\n\nOn Children - by Kahlil Gibran\n"
                 + "Your children are not your children.\n" +
                 "\n" +
                 "They are the sons and daughters of Life's longing for itself.\n" +
@@ -227,7 +228,7 @@ public class RegexTest {
         // We need to do a check for m.find() or risk an IllegalStateException
         while(m.find()) {
             for (int i=0; i <= m.groupCount(); i++) {
-                System.out.print("<" + m.group(i) + ">");
+                System.out.print("[" + m.group(i) + "]");
             }
             System.out.println("");
         }
@@ -240,7 +241,7 @@ public class RegexTest {
         // We need to do a check for m.find() or risk an IllegalStateException
         while(m.find()) {
             for (int i=0; i <= m.groupCount(); i++) {
-                System.out.print("<" + m.group(i) + ">");
+                System.out.print("[" + m.group(i) + "]");
             }
             System.out.println("");
         }
@@ -253,7 +254,7 @@ public class RegexTest {
         // We need to do a check for m.find() or risk an IllegalStateException
         while(m.find()) {
             for (int i=0; i <= m.groupCount(); i++) {
-                System.out.print("<" + m.group(i) + ">");
+                System.out.print("[" + m.group(i) + "]");
             }
             System.out.println("");
         }
