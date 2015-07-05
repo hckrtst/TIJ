@@ -112,4 +112,8 @@ public class SortingExamples {
     public boolean shellSort(List<Integer> unsorted) {
         return false;
     }
+    
+    public boolean quickSort(List<Integer> unsorted) {
+        return false;
+    }
 }
