@@ -61,8 +61,6 @@ public class ReverseTest1 {
                 sb.append(str);
             }
         }
-        System.out.println("Final output = " + sb.toString());
-        
-    }
-    
+        System.out.println("Final output = " + sb.toString());        
+    }    
 }
