@@ -15,5 +15,7 @@ void update() {
 }
 
 void draw() {
+  background(0);
+  mydata.update();
   mydata.display();
 }
