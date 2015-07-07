@@ -1,5 +1,5 @@
-## Singly rooted hierarchy
+## TIJ
 
-In Java all classes ultimately inherited from `Object`. The benefit is in OOP since all objects ultimately have a single parent. Exception handling for all objects becomes possible. This also makes it easier to implemente a garbage collector!
+Examples originally inspired by the excellent book ***Thinking in Java***. I continue to add Java examples from all over the place in the same project. This is mostly for my own learning and review. If someone else finds these useful, even better! 
 
-## About storage
+Enjoy! =)
