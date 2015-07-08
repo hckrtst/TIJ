@@ -53,6 +53,9 @@ class Element {
     return y;
   }
   
+  public int getValue() {
+    return value;
+  }
   
   public void display() {
     text(value.toString(), x, y);

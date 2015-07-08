@@ -1,7 +1,6 @@
 DataSet mydata; 
 
 void setup() {
-  
   textSize(20);
   colorMode(RGB);
   background(0);
