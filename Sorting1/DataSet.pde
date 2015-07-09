@@ -79,7 +79,7 @@ class DataSet {
             d[j] = testElem;
             
             // animate the swap ?
-            
+            swap(d[i], d[j]);
         }
   }
   
@@ -88,7 +88,8 @@ class DataSet {
   * and show a sweet animation to boot   
   */
   private void swap(Element a, Element b) {
-        
+    int x1 = a.getX(), y1 = a.getY(), x2 = a.get();
+    
   }
   
   public void update() {
