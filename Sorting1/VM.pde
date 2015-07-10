@@ -1,18 +1,29 @@
+static final int VM_STATE_INIT = 0;
+static final int VM_STATE_PAUSED = 123;
+static final int VM_STATE_RUNNING = 223;
+static final int MAX_INSTR = 10;
 /* 
 * Each animation uses a VM and a set of instructions 
 */
 class VM{
   // An array of instructions is our program
-  Instruction[] program;
+  Instruction[] instructions = new Instruction[MAX_INSTR];
   // program counter
-  int pc;
+  int pc = 0;
+  int state;
+  
   public VM() {
-    
+    for(int i =0; i < MAX_INSTR; i++) {
+      instructions[i] = new Instruction();
+    }
+    //instructions[0] = new Instruction();
+    //instructions[1] = new Instruction();
   }
   /* 
   * Continually process each instruction on every draw()
   */
-  public void process() {
+  public void start() {
+    state = VM_STATE_RUNNING;    
   }
   
   /*
@@ -27,16 +38,25 @@ class VM{
   public void reset() {
   }
   
-  /*
+  /* //<>//
   * Process next available instruction
   */
   public void step() {
+    println("step");
+    Instruction i = getNext();
+    if (null != i) {
+      getNext().exec();
+      pc++;
+    } else {
+      println("stopping");
+      state = VM_STATE_PAUSED;
+    }
   }
   
   /*
   * Add an instruction
   */
-  public boolean addInstr() {
+  public boolean addInstr(int instr) {
     
     return false;
   }
@@ -45,5 +65,17 @@ class VM{
   * private methods
   */
   private void loadProgram() {
+  }
+  
+  boolean isRunning() {
+    return (VM_STATE_RUNNING == state);
+  }
+  
+  private Instruction getNext() {
+    if (pc < MAX_INSTR) {
+      return instructions[pc];
+    }
+    println("Maxed out on instructions");
+    return null;
   }
 }

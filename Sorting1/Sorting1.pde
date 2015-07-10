@@ -1,5 +1,5 @@
 DataSet mydata; 
-
+VM vm;
 void setup() {
   textSize(20);
   colorMode(RGB);
@@ -8,13 +8,19 @@ void setup() {
   
   size(600,700);
   mydata = new DataSet();
-}
-
-void update() {
+  vm = new VM();
+  vm.start();
 }
 
 void draw() {
-  background(0);
-  mydata.update();
-  mydata.display();
+  
+  // TODO - only wipe when animating
+  if (vm.isRunning()) {
+    background(0);
+    //mydata.update();
+    //mydata.display();
+    vm.step();
+  } else {
+    
+  }
 }

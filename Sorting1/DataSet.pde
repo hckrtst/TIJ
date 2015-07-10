@@ -1,5 +1,3 @@
-import java.util.*;
-
 public enum Algorithm{
   INSERTION_SORT,
   QUICK_SORT
@@ -66,7 +64,7 @@ class DataSet {
     for (int i = 1; i < d.length ; i++) {
             int j = i;
             Element testElem = d[i];
-            print("Testing " + testvar + ": ");
+            //print("Testing " + testvar + ": ");
             //dumpState(j, mylist);
             while (j > 0 && (d[j-1].getValue() > testElem.getValue()) ) {
                 System.out.println(d[j-1].getValue() + " > " + testElem.getValue());
@@ -88,7 +86,7 @@ class DataSet {
   * and show a sweet animation to boot   
   */
   private void swap(Element a, Element b) {
-    int x1 = a.getX(), y1 = a.getY(), x2 = a.get();
+    //int x1 = a.getX(), y1 = a.getY(), x2 = a.get();
     
   }
   
