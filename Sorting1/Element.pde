@@ -15,6 +15,7 @@ class Element {
   private int x = 0,y = 0;
   private int deltaX = 0, deltaY = 0;
   private int x2 = 0, y2 = 0;
+  private boolean selected = false;
   
   ElementState state = ElementState.ELEM_AT_REST;
   
@@ -31,8 +32,6 @@ class Element {
   
   /* update the desired new position */
   public boolean updatePosition(int _x, int _y) {
-    //text("Manasi", 60, 60);
-    
     // if we are at rest, and not already at desired position 
     // start moving to new position
     if (ElementState.ELEM_AT_REST == state) {
@@ -59,11 +58,27 @@ class Element {
   
   public void display() {
     text(value.toString(), x, y);
+    if (selected) {
+      pushMatrix();
+      stroke(204, 102, 0);
+      noFill();
+      line(x + 5, y + 5, x+20, y + 5);      
+      popMatrix();
+    }
   }
   
   ElementState getState() {
     return state;
   }
+  
+  void select() {
+    selected = true;
+  }
+  
+  void unselect() {
+    selected = false;
+  }
+  
   
   public void initPosition(int _x , int _y) {
     x = _x;

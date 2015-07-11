@@ -8,7 +8,7 @@ void setup() {
   
   size(600,700);
   mydata = new DataSet();
-  vm = new VM();
+  vm = new VM(mydata);
   vm.start();
 }
 
@@ -17,8 +17,8 @@ void draw() {
   // TODO - only wipe when animating
   if (vm.isRunning()) {
     background(0);
-    //mydata.update();
-    //mydata.display();
+    mydata.update();
+    mydata.display();
     vm.step();
   } else {
     

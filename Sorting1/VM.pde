@@ -11,11 +11,13 @@ class VM{
   // program counter
   int pc = 0;
   int state;
+  // instruction register
+  int ir = 0;
   
-  public VM() {
-    for(int i =0; i < MAX_INSTR; i++) {
+  public VM(DataSet mydata) {
+    /*for(int i =0; i < MAX_INSTR; i++) {
       instructions[i] = new Instruction();
-    }
+    }*/
     //instructions[0] = new Instruction();
     //instructions[1] = new Instruction();
   }

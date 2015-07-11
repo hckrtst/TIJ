@@ -23,6 +23,7 @@ class DataSet {
       i = i + 45;
       if (e.getState() == ElementState.ELEM_AT_REST) {
         println("at rest");
+        //e.select();
       }
     }
     sort();    
@@ -95,4 +96,13 @@ class DataSet {
       e.update();
     }
   }
+  
+  public int size() {
+    return data.length;
+  }
+  
+  public Element[] getElems() {
+    return data;
+  }
+  
 }
