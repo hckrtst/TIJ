@@ -4,11 +4,11 @@
 class Instruction {
   // Not using enums to make it portable for pjs
   // NOP is the default instruction
-  static final int NOP = 0;
-  static final int SELECT = 11;
-  static final int COMPARE = 21;
-  static final int SWAP = 31;
-  static final int DESELECT = 41;
+  public static final int NOP = 0;
+  public static final int SELECT = 11;
+  public static final int COMPARE = 21;
+  public static final int SWAP = 31;
+  public static final int DESELECT = 41;
   
   // command
   int cmd = NOP;
@@ -30,6 +30,12 @@ class Instruction {
       {
         println("SELECT " + a);
         a.select();
+        break;
+      }
+      case DESELECT:
+      {
+        println("DESELECT " + a);
+        a.deselect();
         break;
       }
       default:

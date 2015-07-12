@@ -9,6 +9,7 @@ public enum Algorithm{
 */
 class DataSet {
   Element [] data = new Element[4];
+  VM vm;
   
   public DataSet() {
     data[0] = new Element(12);
@@ -23,7 +24,7 @@ class DataSet {
       i = i + 45;
       if (e.getState() == ElementState.ELEM_AT_REST) {
         println("at rest");
-        //e.select();
+        //e.select();       
       }
     }
     sort();    
@@ -57,8 +58,22 @@ class DataSet {
     println("Try to update 0" + data[1].updatePosition(x3, y3));
     println("Try to update 2" + data[2].updatePosition(x4, y4));*/
     
-    insertionSort(data);
+    //insertionSort(data);
     
+    // TEST - just add instructions to select each item for now
+    if (null != vm) {
+      for (int i = 0; i < data.length; i++) {
+        if (!vm.addInstr(Instruction.SELECT, data[i], null)) {
+          //do something
+        }
+        vm.addInstr(Instruction.DESELECT, data[i], null);
+            
+      }
+    }
+  }
+  
+  public void setVm(VM _vm) {
+    vm = _vm;
   }
   
   private void insertionSort(Element[] d) {

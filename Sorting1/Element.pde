@@ -60,9 +60,10 @@ class Element {
     text(value.toString(), x, y);
     if (selected) {
       pushMatrix();
-      stroke(204, 102, 0);
+      stroke(114, 122, 0);
       noFill();
-      line(x + 5, y + 5, x+20, y + 5);      
+      strokeWeight(3);
+      rect(x - 4, y - 18, 45, 45);
       popMatrix();
     }
   }
@@ -75,7 +76,7 @@ class Element {
     selected = true;
   }
   
-  void unselect() {
+  void deselect() {
     selected = false;
   }
   
