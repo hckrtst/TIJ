@@ -21,24 +21,24 @@ void setup() {
 }
 
 void draw() {
-  
-  // TODO - only wipe when animating
-  if (vm.isRunning()) {
+  //if (vm.isRunning()) {
     background(0);
     mydata.update();
     mydata.display();
-    vm.step();    
-  }      
+    vm.update();
+    vm.step();
+    //noLoop();
+  //}      
   
   // TODO move this logic to pause and pace VM
   // into the VM instead of driving from here
-  if((millis() - prevtime) < 1000) {
+  /*if((millis() - prevtime) < 1000) {
     vm.pause();
   }
   else{
     vm.start();
     prevtime = millis();  
-  }
+  }*/
   
   
 }

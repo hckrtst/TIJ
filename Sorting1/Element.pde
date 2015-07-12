@@ -3,7 +3,7 @@
 */
 public enum ElementState {
   ELEM_AT_REST,
-  ELEM_HUSSLE
+  ELEM_ANIMATING
 };
 
 /* 
@@ -88,11 +88,11 @@ class Element {
   
   /* private methods */
   private boolean startMigrationTo(int _x, int _y) {
-    if (ElementState.ELEM_HUSSLE == state) {
+    if (ElementState.ELEM_ANIMATING == state) {
       println("Error: We are already in motion");
       return false;
     }
-    state = ElementState.ELEM_HUSSLE;
+    state = ElementState.ELEM_ANIMATING;
     x2 = _x;
     y2 = _y;
     deltaX = (x2 > x)?2:-2;
@@ -106,7 +106,7 @@ class Element {
   
   private void update() {
     /* if hussling then update new position */
-    if (ElementState.ELEM_HUSSLE == state) {
+    if (ElementState.ELEM_ANIMATING == state) {
       // simple linear motion for now
       x += deltaX;
       y += deltaY;

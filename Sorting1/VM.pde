@@ -9,10 +9,12 @@ class VM{
   // An array of instructions is our program
   Instruction[] instructions = new Instruction[MAX_INSTR];
   // program counter
+  // which tracks the next instruction to execute
   int pc = 0;
   int state;
-  // instruction register
-  int ir = 0;
+  // instruction counter 
+  // which tracks the next instruction to be added
+  int ic = 0;
   
   public VM(DataSet mydata) {
     /*for(int i =0; i < MAX_INSTR; i++) {
@@ -20,6 +22,7 @@ class VM{
     }*/
     //instructions[0] = new Instruction();
     //instructions[1] = new Instruction();
+    instructions[0] = new Instruction();
   }
   /* 
   * Continually process each instruction on every draw()
@@ -43,18 +46,38 @@ class VM{
   public void reset() {
   }
   
+  /*
+  * update vm on each cycle
+  */
+  public void update() {
+    if ((pc < MAX_INSTR) && (null != instructions[pc])) {
+      instructions[pc].update();
+    }
+  }
+  
   /* //<>//
   * Process next available instruction
   */
   public void step() {
-    println("step");
-    Instruction i = getNext();
-    if (null != i) {
-      getNext().exec();
-      pc++;
+    if ((pc >= MAX_INSTR) || (null == instructions[pc])) return;
+      
+    // check if an instruction is executing
+    if (instructions[pc].getState() == INSTR_RUNNING) {
+      //println(instructions[pc].getCmd() + " running ");
+      // do nothing
     } else {
-      println("stopping");
-      state = VM_STATE_PAUSED;
+      // if done or none then get the next instruction
+      Instruction i = getNext();
+      if (null != i) {
+        if (INSTR_RUNNING == i.exec()) {
+          // if still running then pause vm
+          pause();
+        }
+        //pc++;
+      } else {
+        println("stopping");
+        pause();
+      }
     }
   }
   
@@ -62,28 +85,42 @@ class VM{
   * Add an instruction
   */
   public boolean addInstr(int instr, Element _a, Element _b) {
-    if (ir < MAX_INSTR) {
-      instructions[ir] = new Instruction();
+        
+    // Let first instruction always be a NOP
+    if (0 == ic) {
+         println("first instruction is NOP");
+         instructions[ic] = new Instruction(); 
+         instructions[ic].set(Instruction.NOP, null, null);
+         println("added NOP ");
+         ic++;
+    }
+    
+    if (ic < MAX_INSTR) {
+      instructions[ic] = new Instruction();
+      boolean added = true;
       switch(instr) {
         case Instruction.SELECT:
         {
-          instructions[ir].set(Instruction.SELECT, _a, null);
+          instructions[ic].set(Instruction.SELECT, _a, null);
           println("added select " + _a.getValue());
-          
           break;
         }
         case Instruction.DESELECT:
         {
-          instructions[ir].set(Instruction.DESELECT, _a, null);
-          println("added deselect " + _a.getValue());
-          
+          instructions[ic].set(Instruction.DESELECT, _a, null);
+          println("added deselect " + _a.getValue());          
           break;
         }
+        default:
+          println("unknown instruction");
+          added = false;
       }
-      // TODO don't increment if invalid instruction received?
-      // increment so next instruction can be saved
-      ir++;
-      return true;
+      // Don't increment if invalid instruction received
+      if (added) {
+        ic++;
+        return true;
+      }
+      return false;
     }
     
     println("Max instructions reached");
@@ -93,19 +130,18 @@ class VM{
   /*
   * private methods
   */
-  private void loadProgram() {
-  }
-  
   boolean isRunning() {
     return (VM_STATE_RUNNING == state);
   }
   
   private Instruction getNext() {
-    println("getNext() - pc = " + pc);
+    pc++;
     if (pc < MAX_INSTR) {
+      println("getNext() - pc = " + pc);
       return instructions[pc];
     }
-    println("Maxed out on instructions");
+    println("Maxed out on instructions, pause vm");
+    pause();
     return null;
   }
 }
