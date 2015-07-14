@@ -24,6 +24,7 @@
 package sortingexamples;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
@@ -50,11 +51,19 @@ public class SortingExamples {
         data.add(3);
         data.add(3);
         data.add(3);
-        System.out.println("Unsorted list = " + data);
+        //System.out.println("Unsorted list = " + data);
         
-        if (obj.insertionSort(data)) {
-            System.out.println("Sorted list = " + data);
-        }
+        //if (obj.insertionSort(data)) {
+        //System.out.println("Sorted list = " + data);
+        //}        
+        
+        int [] data2 = {3,5,6,7,8,9,2,2,1000,4111, 377, 178, 3726, 1, 9, 67754, 56425};
+        System.out.println("Unsorted data = " + Arrays.toString(data2));
+        
+        obj.quickSort(0, data2.length - 1, data2);
+        
+        System.out.println("Sorted = " + Arrays.toString(data2));
+        
     }
     
     public SortingExamples() {
@@ -113,7 +122,33 @@ public class SortingExamples {
         return false;
     }
     
-    public boolean quickSort(List<Integer> unsorted) {
+    
+    public boolean quickSort(int low, int high, int[] d) {
+        int i = low, j = high;
+        
+        int pivot = d[high]; // test getting pivot from end
+        
+        while (i <= j) {
+            while (d[i] < pivot) i++;
+            
+            while (d[j] > pivot) j--;
+            
+            if (i <= j) {
+                swap(i,j, d);
+                i++;
+                j--;
+            }
+        }
+        if (low < j)
+            quickSort(low, j, d);
+        if (i < high)
+            quickSort(i, high, d);
         return false;
+    }
+    
+    private void swap(int i, int j, int[] d) {
+        int temp = d[i];
+        d[i] = d[j];
+        d[j] = temp;
     }
 }
