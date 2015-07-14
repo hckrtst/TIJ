@@ -58,7 +58,7 @@ public class SortingExamples {
         //}        
         
         int [] data2 = {3,5,6,7,8,9,2,2,1000,4111, 377, 178, 3726, 1, 9, 67754, 56425};
-        System.out.println("Unsorted data = " + Arrays.toString(data2));
+        System.out.println("Unsorted = " + Arrays.toString(data2));
         
         obj.quickSort(0, data2.length - 1, data2);
         
@@ -122,27 +122,68 @@ public class SortingExamples {
         return false;
     }
     
+    private void dump(int i, int j, int pivot, int[] d) {
+        System.out.println("");
+        for (int k = 0; k < 40; k++) System.out.print("-");
+        System.out.println("");
+        int close = 0;
+        
+        for(int k=0; k < d.length; k++) {
+            if (k == i) {
+                System.out.print("i(");
+                close++;
+            }
+            if (k == j) {
+                System.out.print("j(");
+                close++;
+            }
+            if (d[k] == pivot) {
+                System.out.print("p(");
+                close++;
+            }
+            System.out.print(d[k]);
+            while(close > 0) {
+                System.out.print(")");
+                close--;
+            }
+            System.out.print(", ");
+        }
+        System.out.println("");
+        
+    }
     
     public boolean quickSort(int low, int high, int[] d) {
         int i = low, j = high;
+        System.out.println("\n\nQuicksort called: low value = " + d[low] + " high value = " + d[high]);
+        // Pivots can be selected many ways
+        int p = low + (high - low)/2;
+        int pivot = d[p];
         
-        int pivot = d[high]; // test getting pivot from end
-        
+        System.out.println("pivot = " + pivot);
         while (i <= j) {
+            dump(i, j, pivot, d);
+            System.out.println("\ninc i until d[i]>pivot  & dec j until d[j]<pivot");
             while (d[i] < pivot) i++;
             
             while (d[j] > pivot) j--;
             
+            dump(i, j, pivot, d);
             if (i <= j) {
                 swap(i,j, d);
+                System.out.println("\nSwap i & j");
+                dump(i, j, pivot, d);
                 i++;
                 j--;
             }
         }
-        if (low < j)
+        if (low < j) {
+            System.out.println("low < j");    
             quickSort(low, j, d);
-        if (i < high)
+        }
+        if (i < high) {
+            System.out.println("i < high");
             quickSort(i, high, d);
+        }
         return false;
     }
     
