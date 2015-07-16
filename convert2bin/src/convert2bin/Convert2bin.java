@@ -23,7 +23,11 @@
  */
 package convert2bin;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 /**
  *
@@ -36,6 +40,10 @@ public class Convert2bin {
     * Does not scale easily for conversion to another base
     */
     public String simpleConvert(int input) {
+        if (input < 0) {
+            return null;
+        }
+        long t1 = System.nanoTime();
         // Assume max size is 32
         int size = 32;
         int step = 1;
@@ -48,13 +56,30 @@ public class Convert2bin {
             size--;
             collector[size] = t;
         }
-        
+        System.out.println("Done in " + (System.nanoTime() - t1) + " nano seconds");
         return Arrays.toString(collector);
     }
     
-    public String divByX() {
-        return null;
+    public String divByX(int input, int radix) {
+        if (input < 0) {
+            return null;
+        }
+        long t1 = System.nanoTime();
+        List collector = new ArrayList();
+        int quotient = input;
+        int remainder = 0;
+        while (quotient > 0) {
+            remainder = quotient % radix;
+            quotient = quotient / radix;
+            collector.add(remainder);
+        }
+        
+        Collections.reverse(collector);
+        System.out.println("Done in " + (System.nanoTime() - t1) + " nano seconds");
+        return (Arrays.toString(collector.toArray()));        
     }
+    
+    
     
     /**
      * @param args the command line arguments
@@ -62,9 +87,20 @@ public class Convert2bin {
     public static void main(String[] args) {
         int a = -45;
         Convert2bin o = new Convert2bin();
+        System.out.println("Method 1: brute force conversion");
         System.out.println("\nResult = " + o.simpleConvert(120));
         System.out.println("\nResult = " + o.simpleConvert(12));
-        System.out.println("\nResult = " + o.simpleConvert(2220));     
+        System.out.println("\nResult = " + o.simpleConvert(2220));
+        
+        System.out.println("Method2: divide by radix");
+        System.out.println("\nResult = " + o.divByX(120, 2));
+        System.out.println("\nResult = " + o.divByX(12, 2));
+        System.out.println("\nResult = " + o.divByX(2220, 2));
+        
+        System.out.println("\nResult = " + o.divByX(120, 3));
+        System.out.println("\nResult = " + o.divByX(12, 3));
+        System.out.println("\nResult = " + o.divByX(2220, 3));
+        
         
     }    
 }
