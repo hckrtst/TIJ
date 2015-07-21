@@ -6,6 +6,7 @@
 
 package quickfind1;
 
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 import static org.testng.Assert.*;
@@ -41,11 +42,47 @@ public class NewEmptyTestNGTest {
         QuickFind1 o = new QuickFind1();
                         
         assert(myset != null);
-        assert(o.getN(myset) == 11);       
+        assert(o.getN(myset) == 12);       
+    }
+    
+    @Test
+    public void testsimple() {
+        System.out.println("testsimple");
+        HashSet<Pair> myset = new HashSet<>();
+        myset.add(new Pair(11,8));
+        myset.add(new Pair(0,2));
+        myset.add(new Pair(7,9));
+        
+        System.out.println(myset.toString());
+        QuickFind1 o = new QuickFind1();
+          
+        
+        int[] expected = {2, 1, 2, 3, 4, 5, 6, 9, 8, 9, 10, 8};
+        assert(Arrays.equals(expected, o.simple(myset)));
+    }
+    
+    @Test
+    public void testsimple2() {
+        System.out.println("testsimple2");
+        HashSet<Pair> myset = new HashSet<>();
+        myset.add(new Pair(11,8));
+        myset.add(new Pair(0,2));
+        myset.add(new Pair(7,0));
+        myset.add(new Pair(7,2));
+        myset.add(new Pair(2,11));
+        
+        
+        System.out.println(myset.toString());
+        QuickFind1 o = new QuickFind1();
+                        
+        
+        int[] expected = {2, 1, 2, 3, 4, 5, 6, 9, 8, 9, 10, 8};
+        assert(Arrays.equals(expected, o.simple(myset)));
     }
 
     @BeforeClass
     public static void setUpClass() throws Exception {
+        
     }
 
     @AfterClass

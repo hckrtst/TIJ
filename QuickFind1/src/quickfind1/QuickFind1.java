@@ -5,7 +5,10 @@
  */
 package quickfind1;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashSet;
+import java.util.List;
 
 class Pair{
     int p;
@@ -54,7 +57,8 @@ public class QuickFind1 {
             max = p>max?p:max;
             max = q>max?q:max;
         }
-        return max;
+        // add 1 to ensure correct upper bound
+        return (max + 1);
     }
     /*
     * We use an array
@@ -64,12 +68,45 @@ public class QuickFind1 {
      * @param input
      * @param data
      */
-    public void simple(HashSet<Pair> data) {
+    public int[] simple(HashSet<Pair> data) {
         // first we figure out how big of an array we need based on 
         // the max value in pairs
         // This is an extra iteration
+        // we incur :(
+        int N = getN(data);
         
+        // Next we create an array of ints
+        // with unique values
+        int[] items;
+        items = new int[N];
+        for(int i=0; i < N; i++) {
+            items[i] = i;
+        }
         
+        // Now we iterate through each pair
+        
+        for(Pair o: data) {
+            int p = o.getP();
+            int q = o.getQ();
+            // cache the current value at p
+            int t = items[p];
+            if (items[p] == items[q]) {
+                System.out.println("same");
+                continue;
+            }
+            
+            for (int i=0; i < N; i++) {
+                if (items[i] == t) {
+                    System.out.println("Replacing " + items[i] + " with " + items[q]);
+                    items[i] = items[q];
+                }
+            }
+            
+            System.out.println(o);
+            
+        }
+        System.out.println(Arrays.toString(items));
+        return items;
         
     }
     
