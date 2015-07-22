@@ -76,8 +76,24 @@ public class NewEmptyTestNGTest {
         QuickFind1 o = new QuickFind1();
                         
         
-        int[] expected = {2, 1, 2, 3, 4, 5, 6, 9, 8, 9, 10, 8};
+        int[] expected = {8, 1, 8, 3, 4, 5, 6, 8, 8, 9, 10, 8};
         assert(Arrays.equals(expected, o.simple(myset)));
+    }
+    
+    @Test
+    public void testSimpleOutofMem() {
+        System.out.println("testSimpleOutOfMem");
+        HashSet<Pair> myset = new HashSet<>();
+        myset.add(new Pair(11,8));
+        myset.add(new Pair(0,2));
+        myset.add(new Pair(7,0));
+        myset.add(new Pair(7,2));
+        myset.add(new Pair(2,1111111111));
+        
+        QuickFind1 o = new QuickFind1();
+        
+        assert(null == o.simple(myset));
+        
     }
 
     @BeforeClass

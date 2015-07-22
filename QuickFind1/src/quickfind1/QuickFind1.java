@@ -77,8 +77,13 @@ public class QuickFind1 {
         
         // Next we create an array of ints
         // with unique values
-        int[] items;
-        items = new int[N];
+        int[] items = null;
+        try {
+            items = new int[N];
+        }catch(OutOfMemoryError e) {
+            System.out.println(e.getCause());
+            return null;
+        }
         for(int i=0; i < N; i++) {
             items[i] = i;
         }
