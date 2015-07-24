@@ -24,6 +24,7 @@
 package eratosthenes;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Iterator;
 
 /**
@@ -38,41 +39,42 @@ public class Eratosthenes {
     * pick next available candidate
     * rinse and repeat
     */
-    public void sieve(int n) {
-        ArrayList<Integer> pile = new ArrayList<>();
-        // Create a list
+    public void sieve1(int n) {
+        
+        int [] data = new int[n+1];
+        
+        // Create the initial dataset
+        // skip over 0 and 1
         for (int i = 2; i <= n; i++) {
-            pile.add(i);
+            data[i] = i;
         }
-        System.out.println("Our initial list = " + pile);
+        System.out.println("Our initial list = " + Arrays.toString(data));
         
-        try {
-        Iterator<Integer> it = pile.iterator();
-        while (it.hasNext()) {
-            Integer cand = it.next();
-            System.out.println("cand = " + cand);
-            int mult = cand;
-            Iterator<Integer> it2 = it;
-            while (it2.hasNext()) {
-                if ((cand * mult) < n) {
-                System.out.println("Remove " + (cand*mult));
-                pile.remove(i);
-                mult++;
-                }
+        int index = 2;
+        int candidate;
+               
+        while(index <= n) {
+            candidate = data[index];
+            if (0 == candidate) {
+                index++;
+                continue;
             }
-            while ((cand * mult) < n) {
-                System.out.println("Remove " + (cand*mult));
-                Integer i = new Integer(cand*mult);
-                pile.remove(i);
-                mult++;
-            }            
+            
+            System.out.println("cand = " + candidate);
+            // picked candidate
+            int candidate_index = index + candidate;
+            //System.out.println("candidate_index = "+ candidate_index);
+            //mult = cand;
+            //System.out.println("Mult = " + mult);
+            
+            while ((candidate_index <= n) && (data[candidate_index] <= n) && (0 != data[candidate_index])) {
+               data[candidate_index] = 0;
+               candidate_index += candidate;
+               System.out.println(">>index2 = " + candidate_index);
+            }
+            index++;                        
         }
-        } catch (IndexOutOfBoundsException e) {
-            e.printStackTrace();
-        }
-        
-        System.out.println("Final = " + pile);
-        
+        System.out.println("Final = " + Arrays.toString(data));                
     }
     
     /**
@@ -80,7 +82,9 @@ public class Eratosthenes {
      */
     public static void main(String[] args) {
         Eratosthenes e = new Eratosthenes();
-        e.sieve(20);
+        e.sieve1(200);
+        
+        
     }
                 
     
