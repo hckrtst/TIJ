@@ -22,10 +22,8 @@
  * THE SOFTWARE.
  */
 package eratosthenes;
-
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Iterator;
+
 
 /**
  *
@@ -33,52 +31,7 @@ import java.util.Iterator;
  */
 public class Eratosthenes {
     
-    /*
-    * Pick candidate
-    * Start eliminating multiple of candidates until we are at n
-    * pick next available candidate
-    * rinse and repeat
-    */
-    public void sieve1(int n) {
-        
-        int [] data = new int[n+1];
-        
-        // Create the initial dataset
-        // skip over 0 and 1
-        for (int i = 2; i <= n; i++) {
-            data[i] = i;
-        }
-        System.out.println("Our initial list = " + Arrays.toString(data));
-        
-        int index = 2;
-        int candidate;
-               
-        while(index <= n) {
-            candidate = data[index];
-            if (0 == candidate) {
-                index++;
-                continue;
-            }
-            
-            System.out.println("cand = " + candidate);
-            // picked candidate
-            int candidate_index = index + candidate;
-            //System.out.println("candidate_index = "+ candidate_index);
-            //mult = cand;
-            //System.out.println("Mult = " + mult);
-            
-            while ((candidate_index <= n) && (data[candidate_index] <= n) && (0 != data[candidate_index])) {
-               data[candidate_index] = 0;
-               candidate_index += candidate;
-               System.out.println(">>index2 = " + candidate_index);
-            }
-            index++;                        
-        }
-        System.out.println("Final = " + Arrays.toString(data));                
-    }
-    
-    public void sieve2(int n) {
-        
+    public void sieve(int n) {
         int [] data = new int[n+1];
         
         // Create the initial dataset
@@ -99,23 +52,23 @@ public class Eratosthenes {
                 continue;
             }
             if(candidate * candidate > (n+1)) {
-                System.out.println("All done");
+                System.out.println("Stopping now since all "
+                        + "remaining numbers are prime");
                 break;
             }
             
-            System.out.println("cand = " + candidate);
             // picked candidate
+            System.out.println("candidate = " + candidate);
             int candidate_index = index + candidate;
-            //System.out.println("candidate_index = "+ candidate_index);
-            //mult = cand;
-            //System.out.println("Mult = " + mult);
-            System.out.println("index2 = " + candidate_index);
+            System.out.println("Zero out all multiples of " + candidate);
+            System.out.println("candidate_index = " + candidate_index);
+            
             while ((candidate_index <= n)) {
                 if (0 != data[candidate_index]) {
                     data[candidate_index] = 0;
                 }
                candidate_index += candidate;
-               System.out.println(">>index2 = " + candidate_index);
+               System.out.println("candidate_index = " + candidate_index);
             }
             index++;                        
         }
@@ -127,8 +80,7 @@ public class Eratosthenes {
      */
     public static void main(String[] args) {
         Eratosthenes e = new Eratosthenes();
-        e.sieve1(26);        
-        e.sieve2(26);
+        e.sieve(30);
         
     }
                 
