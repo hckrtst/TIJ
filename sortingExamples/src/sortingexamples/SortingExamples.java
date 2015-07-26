@@ -23,8 +23,8 @@
  */
 package sortingexamples;
 
-import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
@@ -42,7 +42,8 @@ public class SortingExamples {
      */
     public static void main(String[] args) {    
         SortingExamples obj = new SortingExamples();
-        List<Integer> data = new ArrayList<>();
+        List<Integer> data = new LinkedList<>();
+       
         
         // TODO add random numbers in a loop
         data.add(100);
