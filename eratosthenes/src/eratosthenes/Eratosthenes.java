@@ -77,13 +77,58 @@ public class Eratosthenes {
         System.out.println("Final = " + Arrays.toString(data));                
     }
     
+    public void sieve2(int n) {
+        
+        int [] data = new int[n+1];
+        
+        // Create the initial dataset
+        // skip over 0 and 1
+        for (int i = 2; i <= n; i++) {
+            data[i] = i;
+        }
+        System.out.println("Our initial list = " + Arrays.toString(data));
+        
+        int index = 2;
+        int candidate;
+               
+        while(index <= n) {
+            System.out.println("Index = " + index);
+            candidate = data[index];
+            if (0 == candidate) {
+                index++;
+                continue;
+            }
+            if(candidate * candidate > (n+1)) {
+                System.out.println("All done");
+                break;
+            }
+            
+            System.out.println("cand = " + candidate);
+            // picked candidate
+            int candidate_index = index + candidate;
+            //System.out.println("candidate_index = "+ candidate_index);
+            //mult = cand;
+            //System.out.println("Mult = " + mult);
+            System.out.println("index2 = " + candidate_index);
+            while ((candidate_index <= n)) {
+                if (0 != data[candidate_index]) {
+                    data[candidate_index] = 0;
+                }
+               candidate_index += candidate;
+               System.out.println(">>index2 = " + candidate_index);
+            }
+            index++;                        
+        }
+        System.out.println("Final = " + Arrays.toString(data));                
+    }
+    
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
         Eratosthenes e = new Eratosthenes();
-        e.sieve1(200);
-        
+        e.sieve1(26);        
+        e.sieve2(26);
         
     }
                 
