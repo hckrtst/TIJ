@@ -139,16 +139,16 @@ public class BasicLinkedListImpl<E> extends BasicLinkedList<E> {
         
         // if empty set head and tail to be first element
         if (0 == size) {
-            System.out.println("Adding first element");
+            //System.out.println("Adding first element");
             head = n;
             tail = n;            
         } else {
-            System.out.println("Added to head");
+            //System.out.println("Added to head");
             // add to head and update head
             n.next = head;
             n.prev = null; // TODO use sentinal?
             head = n;
-            System.out.println("Head is now " + head);
+            //System.out.println("Head is now " + head);
         }
         size++;
         System.out.println("Size is now " + size);
@@ -246,5 +246,45 @@ public class BasicLinkedListImpl<E> extends BasicLinkedList<E> {
     public void clear() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+    
+    /*
+    * For doubly link lists we can trivially start at the tail and insert into
+    * new list
+    */
+    @Override
+    public BasicLinkedList<E> getReverseList() {
+        BasicLinkedList<E> revList = new BasicLinkedListImpl<>();
+        
+        Node<E> n = this.head;
+        while(null != n) {
+            revList.add(n.payload);
+            System.out.println("Add " + n.payload);
+            n = n.next;
+        }
+        
+        return revList;
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        
+        sb.append("[");
+        // TODO use iterator
+        //Iterator<E> it = iterator();
+        
+        Node<E> n = this.head;
+        while(null != n) {
+            sb.append(n.payload);
+            if (this.tail != n) {
+                sb.append(",");
+            }
+            n = n.next;            
+        }
+        
+        sb.append("]");
+        return sb.toString();
+    }
+    
     
 }

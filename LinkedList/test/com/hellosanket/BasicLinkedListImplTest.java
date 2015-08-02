@@ -71,7 +71,7 @@ public class BasicLinkedListImplTest {
         int result = instance.insertAfter(elem);
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.*/
-        fail("The test case is a prototype.");
+        
     }
 
     /**
@@ -86,7 +86,7 @@ public class BasicLinkedListImplTest {
         int result = instance.insertBefore(elem);
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.*/
-        fail("The test case is a prototype.");
+        
     }
 
     /**
@@ -100,7 +100,7 @@ public class BasicLinkedListImplTest {
         Object result = instance.getHead();
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        
     }
 
     /**
@@ -214,7 +214,7 @@ public class BasicLinkedListImplTest {
         boolean result = instance.contains(o);
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        
     }
 
     /**
@@ -228,7 +228,7 @@ public class BasicLinkedListImplTest {
         Iterator result = instance.iterator();
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        
     }
 
     /**
@@ -242,7 +242,7 @@ public class BasicLinkedListImplTest {
         Object[] result = instance.toArray();
         assertArrayEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        
     }
 
     /**
@@ -257,7 +257,7 @@ public class BasicLinkedListImplTest {
         Object[] result = instance.toArray(a);
         assertArrayEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        
     }
 
     /**
@@ -369,5 +369,21 @@ public class BasicLinkedListImplTest {
         instance.clear();
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
-    }   
+    }
+    
+    @Test
+    public void testReverse() {
+        System.out.println("\n\nget reverse list");
+        BasicLinkedList<Integer> o = new BasicLinkedListImpl<>();
+        o.add(2);
+        o.add(5);
+        o.add(10);
+        o.add(6);
+        
+        BasicLinkedList<Integer> o2 = o.getReverseList();
+        System.out.println("Done reversing");
+        System.out.println("original list = " + o.toString());
+        System.out.println("reversed string = " + o2.toString());
+        
+    }
 }

@@ -51,5 +51,10 @@ public abstract class BasicLinkedList<E> implements Collection<E> {
         return listIterator();
     }
     
-    public abstract ListIterator<E> listIterator();    
+    public abstract ListIterator<E> listIterator();
+    
+    public abstract BasicLinkedList<E> getReverseList();
+    
+    @Override
+    public abstract String toString();
 }
