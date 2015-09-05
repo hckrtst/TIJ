@@ -27,6 +27,7 @@ package com.hellosanket;
  *
  * @author Sanket K<hckrtst@gmail.com>
  */
-public class Node {
-    
+public class Node<P> {
+    private P payload;
+    private Node leftChild, rightChild;    
 }

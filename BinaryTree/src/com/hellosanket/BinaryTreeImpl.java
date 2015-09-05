@@ -24,12 +24,13 @@
 package com.hellosanket;
 
 /**
+ *
  * @author Sanket K<hckrtst@gmail.com>
  */
-public abstract class BinaryTree<K,P> {
-    private Node root;
-    
-    abstract boolean insert(K key, P payload );
+public class BinaryTreeImpl<K,P> extends BinaryTree<K,P>{
+    boolean insert(K key, P payload ) {
+        return false;
+    }
     
     /**
      * Get the Node representing the inorder successor of
@@ -38,7 +39,15 @@ public abstract class BinaryTree<K,P> {
      * @param key
      * @return 
      */
-    abstract Node getInorderSuccessor(K key);
-    abstract void inorderTraversal(K key);
-    abstract boolean remove(K key);    
+    Node getInorderSuccessor(K key) {
+        return null;
+    }
+    
+    void inorderTraversal(K key) {
+        
+    }
+    
+    boolean remove(K key) {
+        return false;
+    }    
 }
