@@ -49,5 +49,9 @@ public class BinaryTreeImpl<K,P> extends BinaryTree<K,P>{
     
     boolean remove(K key) {
         return false;
-    }    
+    }
+    
+    boolean fakeMethod() {
+        return true;
+    }
 }
