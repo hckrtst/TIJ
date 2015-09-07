@@ -6,6 +6,7 @@
 package iotester;
 
 import java.io.BufferedReader;
+import java.io.Console;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.InputMismatchException;
@@ -54,7 +55,7 @@ public class IOTester {
         // Read a line at a time now
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
         String line;
-        
+        System.out.println("Start typing again miho!");
         try {
             while((line = bufferedReader.readLine()) != null && line.length() > 0) {
                 System.out.println("Got line = " + line);
@@ -62,13 +63,36 @@ public class IOTester {
         } catch (IOException ex) {
             Logger.getLogger(IOTester.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
+            // NOTE: if we close the bufferedReader then subsequently we cannot open console!!!!
+            // This because if we close the input stream then the console will not be available to
+            // VM anymore
+            // See http://stackoverflow.com/questions/20982664/why-does-system-console-return-null-for-a-command-line-app
+            /*
             try {
-                bufferedReader.close();
+                 bufferedReader.close();
             } catch (IOException ex) {
                 Logger.getLogger(IOTester.class.getName()).log(Level.SEVERE, null, ex);
-            }
+            }*/
         }
         
+        /* 
+            To exercise this run directly from command line
+            cd /home/tintin/workspace/TIJ/IOTester/build/classes
+            [tintin@daredevil classes]$ java iotester.IOTester
+            Como estas...type something
+        */
         
+        // This will still work since we did not close output stream
+        //System.out.println("Test printing something");
+        
+        //Read console (won't work from IDE)
+        Console console = System.console();
+        
+        if (console == null) {
+            System.out.println("No console found");
+        } else {
+            String s = console.readLine("Type something:");
+            System.out.println("You typed: " + s);
+        }
     }   
 }
