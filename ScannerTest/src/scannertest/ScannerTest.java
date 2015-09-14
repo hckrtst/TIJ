@@ -33,11 +33,6 @@ public class ScannerTest {
             //next() scans for String by default
             // for fun, try to use nextInt instead :)
             System.out.println("Token = " + s1.next());
-        }
-        
-        
-        
-        
-    }
-    
+        }       
+    }   
 }
